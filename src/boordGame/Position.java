@@ -1,5 +1,7 @@
 package boordGame;
 
+//Está classe contém os atributos de linha e coluna utlizados pelas peças BRANCAS e PRETAS//
+
 public class Position {
     
     private int row;

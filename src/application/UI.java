@@ -2,6 +2,8 @@ package application;
 
 import chess.ChessPiece;
 
+//Classe responsavel pela impresão de peças e do tabuleiro para o usuario //
+
 public class UI {
 
     public static void printBoard(ChessPiece[][] pieces) {
