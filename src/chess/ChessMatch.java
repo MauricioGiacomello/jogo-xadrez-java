@@ -34,6 +34,32 @@ public class ChessMatch {
         return mat;
     }
 
+    /* 1 - Recebe posição de destino e posição de origem 
+       2 - Valida se a posição existe com validateSourcePosition */
+    public ChessPiece performChesseMove(ChessPosition sourcePosition, ChessPosition targetPosition){
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMove(source, target);
+        return (ChessPiece)capturedPiece;
+    }
+
+    //Recebe a posição digitada pelo usuario e verifica se tem alguma coisa nesta posição//
+    private void validateSourcePosition(Position position){
+        if (!board.thereIsAPiece(position)){
+            throw new ChessException("There is no piece on source position");
+        }
+    }
+    /* 1 - Remove a peça da posição de origem 
+       2 - Remove a peça na posição de destino
+       3 - Adiciona na posição de destino a nova peça*/
+    private Piece makeMove(Position source, Position target){
+        Piece p = board.removePiece(source); // Remove a peça da posição de origem//
+        Piece capturedPiece = board.removePiece(target); // Captura e remove a peça na possição de destino //
+        board.placePiece(p, target); // Adiciona na posição de destino//
+        return capturedPiece; // retorna a peça capturada//
+    }
+
     //Insere uma nova peça no game e chama o toString para converter os valores para as posições na variavel//
     private void placeNewPiece(char column, int row, ChessPiece piece){
         board.placePiece(piece, new ChessPosition(column, row).toPosition());

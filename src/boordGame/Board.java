@@ -58,6 +58,23 @@ public class Board {
         piece.position = position;
     }
 
+    /* 1 - Valida se a posição existe 
+       2 - Valida se a posição tem alguma coisa
+       3 - Guarda a posição em AUX e exclui a posição da matriz */
+    public Piece removePiece(Position position){
+        if(!positionExists(position)){
+            throw new BoardException("Position not on the board");
+        }
+        if(piece(position) == null){
+            return null;
+        }
+
+        Piece aux = piece(position);
+        aux.position = null;
+            pieces[position.getRow()][position.getColumn()] = null;
+            return aux;
+    }
+
     /*Valida se a posição passada existe no tabuleiro 
     ROWS e COLUMS-> é a altura e largura do tabuleiro */
     public boolean positionExists(int row, int column){
