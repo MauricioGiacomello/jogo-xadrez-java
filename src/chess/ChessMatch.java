@@ -34,11 +34,16 @@ public class ChessMatch {
         return mat;
     }
 
+    //Insere uma nova peça no game e chama o toString para converter os valores para as posições na variavel//
+    private void placeNewPiece(char column, int row, ChessPiece piece){
+        board.placePiece(piece, new ChessPosition(column, row).toPosition());
+    }
+
     // Montar a mesa inicial para fazer a partida de xadrez //
     private void initialSetup(){
-        //Instanciando cada peão no tabuleiro //
-        board.placePiece(new Rook(board, Color.WHITE), new Position(2, 1));
-        board.placePiece(new King(board, Color.BLACK), new Position(4, 6));
+        placeNewPiece('b', 6, new Rook(board, Color.WHITE));
+        placeNewPiece('b', 1, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 1, new King(board, Color.WHITE));
 
 
     }

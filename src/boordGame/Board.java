@@ -2,7 +2,8 @@ package boordGame;
 
 import boordGame.*;
 
-// Está classe contém os atributos linhas, culunas e a matriz utlizada no jogo //
+/* 1 - Contém as linhas e colunas que seram utilizadas no tabuleiro
+   2 - Contém uma série de métodos que fazem verificações em relação aos dados passados pelos usuarios  */
 
 public class Board {
 
