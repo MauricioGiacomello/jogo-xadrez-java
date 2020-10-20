@@ -2,6 +2,7 @@ package chess;
 
 import boordGame.Board;
 import boordGame.Piece;
+import boordGame.Position;
 
 // Atribuir cor para cada peça no tabuleiro //
 
@@ -16,6 +17,13 @@ public abstract class ChessPiece extends Piece{
 
     public Color getColor(){
         return color;
+    }
+    
+    /* Este método verifica se a cor da peça de uma determinda possição 
+    é diferente da cor da peça que estou trabalhando  */
+    protected boolean IsThereOpponentPiece(Position position){
+        ChessPiece p = (ChessPiece) getBoard().piece(position); // DownCasting //
+        return p != null && p.getColor() != color; 
     }
     
 }
