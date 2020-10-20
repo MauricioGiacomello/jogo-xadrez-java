@@ -5,7 +5,7 @@ import boordGame.Piece;
 
 // Atribuir cor para cada peça no tabuleiro //
 
-public class ChessPiece extends Piece{
+public abstract class ChessPiece extends Piece{
 
     private Color color;
 
