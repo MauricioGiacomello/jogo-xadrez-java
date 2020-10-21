@@ -36,6 +36,13 @@ public class ChessMatch {
         return mat;
     }
 
+    //Usado para imprimir as possições possiveis a partir de uma possição de origem//
+    public boolean[][] possibleMoves(ChessPosition sourcePosition){
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMove();
+    }
+
     /*
      * 1 - Recebe posição de destino e posição de origem 2 - Valida se a posição
      * existe com validateSourcePosition

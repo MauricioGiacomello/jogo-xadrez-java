@@ -54,27 +54,50 @@ public class UI {
         }
     }
 
+    /*Imprime apenas o tabuleiro com as peças em suas determinadas posições*/
     public static void printBoard(ChessPiece[][] pieces) {
 
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((8 - i) + " ");
 
             for (int j = 0; j < pieces.length; j++) {
-                printPiece(pieces[i][j]);
+                printPiece(pieces[i][j], false);
             }
+
             System.out.println();
         }
 
         System.out.println();
         System.out.println(" a b c d e f g h");
     }
+ 
+         /*Imprime o tabuleiro com as peças em suas determinadas posições e as possibilidades de mover elas*/
+         public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMove) {
+
+             for (int i = 0; i < pieces.length; i++) {
+                 System.out.print((8 - i) + " ");
+    
+                 for (int j = 0; j < pieces.length; j++) {
+                     printPiece(pieces[i][j], possibleMove[i][j]);
+                 }
+                 System.out.println();
+             }
+
+        System.out.println();
+        System.out.println(" a b c d e f g h");
+    }
 
     // Emprime o conteudo de 1 peça já com a coloração prevista para a peça//
-    public static void printPiece(ChessPiece piece) {
+    public static void printPiece(ChessPiece piece, boolean background) {
+
+        if(background){
+
+            System.out.print(ANSI_BLUE_BACKGROUND);
+        }
 
         if (piece == null) {
 
-            System.out.print("-");
+            System.out.print("-" + ANSI_RESET);
 
         } else {
 
