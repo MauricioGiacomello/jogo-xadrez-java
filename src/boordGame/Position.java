@@ -37,6 +37,10 @@ public class Position {
         this.row = row;
     }
 
+    public int getValues(int row){
+        return row;
+    }
+
     @Override
     public String toString(){
         return row + "," + column;
