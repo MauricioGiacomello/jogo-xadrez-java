@@ -2,17 +2,21 @@ package chess;
 
 import boordGame.*;
 
-import Picieschess.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import boordGame.Board;
+import Picieschess.*;
 
 // ChessMatch é responsavel pelo inicioda da partida //
 
 public class ChessMatch {
-    
+
     private int turn;
     private Color currentPlayer;
     private Board board;
+
+    private List<Piece> piecesOnTheBoard = new ArrayList<>(); // Peças no tabuleiro //
+    private List<Piece> capturedPieces = new ArrayList<>(); // Peças capturadas //
 
     public ChessMatch() {
 
@@ -23,11 +27,11 @@ public class ChessMatch {
 
     }
 
-    public int getTurn(){
+    public int getTurn() {
         return turn;
     }
 
-    public Color getCurrentPlayer(){
+    public Color getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -48,8 +52,9 @@ public class ChessMatch {
         return mat;
     }
 
-    //Usado para imprimir as possições possiveis a partir de uma possição de origem//
-    public boolean[][] possibleMoves(ChessPosition sourcePosition){
+    // Usado para imprimir as possições possiveis a partir de uma possição de
+    // origem//
+    public boolean[][] possibleMoves(ChessPosition sourcePosition) {
         Position position = sourcePosition.toPosition();
         validateSourcePosition(position);
         return board.piece(position).possibleMove();
@@ -84,7 +89,7 @@ public class ChessMatch {
             throw new ChessException("There is no piece on source position");
         }
 
-        if(currentPlayer != ((ChessPiece) board.piece(position)).getColor()){ // teste de cor
+        if (currentPlayer != ((ChessPiece) board.piece(position)).getColor()) { // teste de cor
             throw new ChessException("The chosen piece is not yours");
         }
 
@@ -95,7 +100,7 @@ public class ChessMatch {
     }
 
     // Faz a mudança de um turno de um usuario para o outro //
-    private void nextTurn(){
+    private void nextTurn() {
         turn++;
         // Expressão IF avançada //
         currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
@@ -109,6 +114,11 @@ public class ChessMatch {
         Piece p = board.removePiece(source); // Remove a peça da posição de origem//
         Piece capturedPiece = board.removePiece(target); // Captura e remove a peça na possição de destino //
         board.placePiece(p, target); // Adiciona na posição de destino//
+
+        if (capturedPiece != null) {
+            piecesOnTheBoard.remove(capturedPiece);
+            capturedPieces.add(capturedPiece);
+        }
         return capturedPiece; // retorna a peça capturada//
     }
 
@@ -116,6 +126,7 @@ public class ChessMatch {
     // para as posições na variavel//
     private void placeNewPiece(char column, int row, ChessPiece piece) {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
+        piecesOnTheBoard.add(piece);
     }
 
     // Montar a mesa inicial para fazer a partida de xadrez //
