@@ -33,9 +33,9 @@ public class ChessPosition {
         return new Position(8 - row, column - 'a');
     }
 
-    /*Mesmo processo do método toPosition, poém o inverso para encontrar o caracter de 'a' ou a coluna */
+    /*Mesmo processo do método toPosition, porém o inverso para encontrar o caracter de 'a' ou a coluna */
     protected static ChessPosition fromPosition(Position position){
-        return new ChessPosition((char)('a' - position.getColumn()), 8 - position.getRow());
+        return new ChessPosition((char)('a' + position.getColumn()), 8 - position.getRow());
     }
 
     @Override

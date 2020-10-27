@@ -18,6 +18,10 @@ public abstract class ChessPiece extends Piece{
     public Color getColor(){
         return color;
     }
+
+    public ChessPosition getChessPosition(){ // Converte position (A1) para posição de xadrez [][]//
+        return ChessPosition.fromPosition(position);
+    }
     
     /* Este método verifica se a cor da peça de uma determinda possição 
     é diferente da cor da peça que estou trabalhando  */

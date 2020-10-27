@@ -26,11 +26,11 @@ public class App {
                //UI.clearScreen();
                 UI.printMatch(chessMatch, captured);
                 System.out.println();
-                System.out.println("Source: ");
+                System.out.println("Source: "); 
                 ChessPosition source = UI.readChessPosition(sc);
 
                 // Coloração para as possições que podem mover//
-                 boolean[][] possibleMove = chessMatch.possibleMoves(source);
+                 boolean[][] possibleMove = chessMatch.possibleMove(source);
                  //UI.clearScreen();
                  UI.printBoard(chessMatch.getPieces(), possibleMove);
 

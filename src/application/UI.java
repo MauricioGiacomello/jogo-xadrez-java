@@ -68,6 +68,10 @@ public class UI {
         System.out.println();
         System.out.println("Turn: " + ChessMatch.getTurn());
         System.out.println("Wating player: " + ChessMatch.getCurrentPlayer());
+        
+        if(ChessMatch.getCheck()){
+            System.out.println(("CHECK!"));
+        }
     }
 
     /* Imprime apenas o tabuleiro com as peças em suas determinadas posições */
