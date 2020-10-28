@@ -5,21 +5,20 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import boordGame.Board;
-import boordGame.Position;
 import chess.ChessException;
 import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+
+	public static void main(String[] args) throws Exception {
 
         Scanner sc = new Scanner(System.in);
         ChessMatch chessMatch = new ChessMatch();
         List<ChessPiece> captured = new ArrayList<>();
 
-        while (true) {
+        while (!chessMatch.getCheckMate()) {
 
             try {
 
@@ -53,5 +52,8 @@ public class App {
                 sc.nextLine();
             }
         }
+
+        System.out.println("CHECKMATE!");
+        System.out.println("VENCEDOR: " + ChessMatch.getCurrentPlayer());
     }
 }
